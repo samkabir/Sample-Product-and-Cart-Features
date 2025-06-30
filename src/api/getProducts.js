@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getProducts = async () => {
   try {
-    const { data } = await axios.get(`http://157.230.240.97:9999/api/v1/product/iphone-15-plus`);
+    const { data } = await axios.get(`http://157.230.240.97:9999/api/v1/shop/products`);
     return {
       success: true,
       data: data,

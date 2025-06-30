@@ -1,7 +1,6 @@
 'use client';
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -9,13 +8,10 @@ const BreadCrumbs = () => {
     const pathname = usePathname();
     const pathArr = pathname.split("/").filter(Boolean);
 
-    // Build breadcrumb items
+    // Build breadcrumb items without href
     const crumbs = [
-        { name: "Home", href: "/" },
-        ...pathArr.map((segment, idx) => ({
-            name: capitalize(segment.replace(/-/g, " ")),
-            href: "/" + pathArr.slice(0, idx + 1).join("/"),
-        })),
+        "Home",
+        ...pathArr.map(segment => capitalize(segment.replace(/-/g, " "))),
     ];
 
     return (
@@ -24,15 +20,15 @@ const BreadCrumbs = () => {
                 <header className="h-[40px] flex items-center w-full ">
                     <nav className="container mx-auto px-4 py-4 hidden md:block text-sm flex justify-between items-center w-full" aria-label="Breadcrumb">
                         <ol className="flex items-center space-x-2">
-                            {crumbs.map((crumb, idx) => (
-                                <li key={crumb.href} className="flex items-center">
+                            {crumbs.map((name, idx) => (
+                                <li key={idx} className="flex items-center text-black">
                                     {idx > 0 && <span className="mx-1">{'>'}</span>}
                                     {idx < crumbs.length - 1 ? (
-                                        <Link href={crumb.href} className="text-blue-600 hover:underline">
-                                            {crumb.name}
-                                        </Link>
+                                        <div className="text-black ">
+                                            {name}
+                                        </div>
                                     ) : (
-                                        <span className="text-gray-500">{crumb.name}</span>
+                                        <span className="text-gray-600">{name}</span>
                                     )}
                                 </li>
                             ))}
@@ -41,8 +37,6 @@ const BreadCrumbs = () => {
                 </header>
             </div>
         </div>
-
-
     );
 };
 

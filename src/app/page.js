@@ -7,6 +7,7 @@ import { useSnackbar } from "../context/SnackbarContext";
 import CButton from "../components/UI/CButton/CButton";
 import { useEffect, useState } from "react";
 import { getProducts } from "@/api/getProducts";
+import ProductCard from "@/components/UI/ProductCard/ProductCard";
 
 export default function Home() {
   const { showSnackbar } = useSnackbar();
@@ -15,10 +16,10 @@ export default function Home() {
     try {
       const response = await getProducts();
       console.log(response);
-      if (data.success) {
-        setProducts(data.data);
+      if (response.success) {
+        setProducts(response.data.data);
       } else {
-        console.error('Failed to fetch products:', data.message);
+        console.error('Failed to fetch products:', response.message);
       }
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -30,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 sm:px-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
        
 {/*         
@@ -51,19 +52,12 @@ export default function Home() {
         Show Success Snackbar
       </CButton> */}
 
-        <h1 className="text-4xl font-bold text-center">Welcome to Falcon</h1>
-        <p className="text-lg text-gray-600 text-center">
-          Experience our new platform & Enjoy existing deals and offers on your day to day
-        </p>
+     
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.length > 0 ? (
-            products.map((product) => (
-              <div key={product.id} className="border p-4 rounded-lg shadow-sm">
-                <h2 className="text-xl font-semibold">{product.name}</h2>
-                <p className="text-gray-700">{product.description}</p>
-                <p className="text-lg font-bold">${product.price}</p>
-              </div>
+            products.map((productData, key) => (
+              <ProductCard key={key} product={productData} />
             ))
           ) : (
             <LoadingSkeleton type="rectangular" width={300} height={200} />

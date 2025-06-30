@@ -144,7 +144,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-700 text-center">
           <p className="text-gray-400 text-sm">
-            Falcon ©2025. Design by Samiul Kabir
+            Falcon ©2025. Design by Samiul kabir
           </p>
         </div>
       </div>

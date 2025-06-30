@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const getCategory = async (productSlug) => {
+export const getSingleProduct = async (productSlug) => {
   try {
-    const { data } = await axios.get(`157.230.240.97:9999/api/v1/product/${productSlug}`);
+    const { data } = await axios.get(`http://157.230.240.97:9999/api/v1/product/${productSlug}`);
     return {
       success: true,
       data: data,
