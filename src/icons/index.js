@@ -10,6 +10,17 @@ import  HamburgerIcon from './HamburgerIcon.svg';
 import  MapPinIcon from './MapPinIcon.svg';
 import  MailIcon from './MailIcon.svg';
 import  PhoneIcon from './PhoneIcon.svg';
+import  CheveronUpIcon from './CheveronUpIcon.svg';
+import  CheveronDownIcon from './CheveronDownIcon.svg';
+import  StarIcon from './StarIcon.svg';
+import  HeartFilledIcon from './HeartFilledIcon.svg';
+import  HeartOutlineIcon from './HeartOutlineIcon.svg';
+import  ShareIcon from './ShareIcon.svg';
+import  PlusIcon from './PlusIcon.svg';
+import  MinusIcon from './MinusIcon.svg';
+import  PackageMovingIcon from './PackageMovingIcon.svg';
+import  VerifiedIcon from './VerifiedIcon.svg';
+import  ChatOutlineIcon from './ChatOutlineIcon.svg';
 
 export const icons = {
   TrashIcon,
@@ -23,5 +34,16 @@ export const icons = {
   HamburgerIcon,
   MapPinIcon,
   MailIcon,
-  PhoneIcon
+  PhoneIcon,
+  CheveronUpIcon,
+  CheveronDownIcon,
+  StarIcon,
+  HeartFilledIcon,
+  HeartOutlineIcon,
+  ShareIcon,
+  PlusIcon,
+  MinusIcon,
+  PackageMovingIcon,
+  VerifiedIcon,
+  ChatOutlineIcon
 };

@@ -10,14 +10,14 @@ import { getProducts } from "@/api/getProducts";
 import ProductCard from "@/components/UI/ProductCard/ProductCard";
 
 export default function Home() {
-  const { showSnackbar } = useSnackbar();
+  // const { showSnackbar } = useSnackbar();
   const [products, setProducts] = useState([]);
   const getAllProducts = async () => {
     try {
       const response = await getProducts();
       console.log(response);
       if (response.success) {
-        setProducts(response.data.data);
+        setProducts(response.data);
       } else {
         console.error('Failed to fetch products:', response.message);
       }

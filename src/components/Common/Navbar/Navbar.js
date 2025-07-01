@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import GetIcon from "@/utils/GetIcon";
+import { useSnackbar } from "@/context/SnackbarContext";
 
 const Navbar = () => {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
+    const { numberOfItems } = useSnackbar();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -44,7 +46,14 @@ const Navbar = () => {
                         </div>
                         
                         <div className=" flex gap-3">
-                            <GetIcon name={"CartIcon"} className={"w-[32px] h-[32px]"} />
+                            <Link href="/cart" className="relative">
+                                {numberOfItems > 0 && (
+                                    <span className="absolute -top-1 -right-1 bg-bloodRed text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                        {numberOfItems}
+                                    </span>
+                                )}
+                                <GetIcon name={"CartIcon"} className={"w-[32px] h-[32px]"} />
+                            </Link>
                             <GetIcon name={"UserIcon"} className={"w-[32px] h-[32px"} />
                         </div>
 

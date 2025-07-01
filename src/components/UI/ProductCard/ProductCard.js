@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
 
                     {/* Discount Badge */}
                     {discountPercentage > 0 && (
-                        <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-semibold">
+                        <div className="absolute top-2 left-2 bg-red text-black px-2 py-1 rounded-md text-xs font-semibold">
                             -{discountPercentage}%
                         </div>
                     )}
@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => {
                             {product.badges.map((badge, index) => (
                                 <div
                                     key={badge.id || index}
-                                    className="bg-green-500 text-white px-2 py-1 rounded-md text-xs font-medium"
+                                    className="bg-green text-black px-2 py-1 rounded-md text-xs font-medium"
                                 >
                                     {badge.name}
                                 </div>

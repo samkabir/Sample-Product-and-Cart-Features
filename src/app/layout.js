@@ -1,4 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Onest } from 'next/font/google'
+
+
 import "./globals.css";
 import { Suspense } from 'react';
 import LoadingSkeleton from "../utils/Loading";
@@ -8,15 +10,10 @@ import Navbar2 from "@/components/Common/Navbar2/Navbar2";
 import BreadCrumbs from "@/components/Common/BreadCrumbs/BreadCrumbs";
 import Footer from "@/components/Common/Footer/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const onest = Onest({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata = {
   title: "Next App Template",
@@ -27,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${onest.className} antialiased`}
       >
         <SnackbarProvider>
           <Navbar />

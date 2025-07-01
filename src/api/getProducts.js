@@ -1,15 +1,22 @@
 import axios from 'axios';
 
 export const getProducts = async () => {
-  try {
-    const { data } = await axios.get(`http://157.230.240.97:9999/api/v1/shop/products`);
-    return {
-      success: true,
-      data: data,
-    };
-  } catch (err) {
-    return { success: false, message: err?.response?.data?.message || 'Unknown error' };
-  }
+    try {
+        const [page1Res, page2Res] = await Promise.all([
+            axios.get('http://157.230.240.97:9999/api/v1/shop/products?page=1'),
+            axios.get('http://157.230.240.97:9999/api/v1/shop/products?page=2'),
+        ]);
+        const combinedData = [
+            ...(page1Res.data.data || []),
+            ...(page2Res.data.data || []),
+        ];
+        return {
+            success: true,
+            data: combinedData,
+        };
+    } catch (err) {
+        return { success: false, message: err?.response?.data?.message || 'Unknown error' };
+    }
 };
 
 
