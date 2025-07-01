@@ -1,4 +1,5 @@
 import CButton from '@/components/UI/CButton/CButton';
+import { useCart } from '@/context/CartContext';
 import { useSnackbar } from '@/context/SnackbarContext';
 import GetIcon from '@/utils/GetIcon';
 import Image from 'next/image';
@@ -10,7 +11,8 @@ const ProductDetails = ({ product }) => {
     const [selectedImage, setSelectedImage] = useState(0);
     const [isFavorite, setIsFavorite] = useState(false);
 
-    const { showSnackbar, setNumberOfItems } = useSnackbar();
+    const { showSnackbar } = useSnackbar();
+    const { addToCart, removeFromCart, getItemQuantity, isInCart,  } = useCart();
 
     if (!product) {
         return <div className="p-4">No product data available</div>;
@@ -35,7 +37,7 @@ const ProductDetails = ({ product }) => {
     const ramOptions = getUniqueOptions('Ram');
     const romOptions = getUniqueOptions('Rom');
 
-    // Get selected color and RAM
+    // Get selected color, RAM, ROM, and size from the selected variation
     const selectedColor = selectedVariation?.variation_attributes?.find(
         attr => attr.attribute.name === 'Color'
     )?.attribute_option.attribute_value;
@@ -109,11 +111,9 @@ const ProductDetails = ({ product }) => {
 
     // Handle adding to cart
     const handleCartAdd = (product, variation, quantity) => {
-        // First, get the 'cartItems' from localStorage
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         // Create a new cart item object
         const newCartItem = {
-            id: variation.id || product.id,
+            id: variation?.id || product.id,
             name: product.name,
             color: selectedColor || 'N/A',
             size: selectedSize || 'N/A',
@@ -125,20 +125,8 @@ const ProductDetails = ({ product }) => {
             image: productImages[selectedImage] || product.thumbnail,
             store: product.merchant?.shop_name || 'Unknown Store'
         };
-        // Check if the item already exists in the cart
-        const existingItemIndex = cartItems.findIndex(item => item.id === newCartItem.id);
-        if (existingItemIndex > -1) {
-            // If it exists, update the quantity
-            cartItems[existingItemIndex].quantity += quantity;
-            
-        } else {
-            // If it doesn't exist, add the new item
-            cartItems.push(newCartItem);
-        }
-        setNumberOfItems(prev => prev + quantity);
-        // Save the updated cart items back to localStorage
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        // Show a success message
+        
+        addToCart(newCartItem);
         
         showSnackbar('Saved!', 'success');
     };
@@ -344,7 +332,7 @@ const ProductDetails = ({ product }) => {
                             <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full">
 
                                 <div className="w-[33px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer" onClick={(e) =>{
-                                    e.stopPropagation();
+                                    e.preventDefault();
                                     setQuantity(Math.max(1, quantity - 1))
                                 }} >
                                     <GetIcon name="MinusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
@@ -357,7 +345,7 @@ const ProductDetails = ({ product }) => {
 
                                 <div className="w-[33px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer" onClick={(e) => 
                                     {
-                                        e.stopPropagation();
+                                        e.preventDefault();
                                         setQuantity(quantity + 1)
                                 }} >
                                     <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />

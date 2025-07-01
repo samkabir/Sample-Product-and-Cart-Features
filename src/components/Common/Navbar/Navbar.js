@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import GetIcon from "@/utils/GetIcon";
-import { useSnackbar } from "@/context/SnackbarContext";
+import { useCart } from "@/context/CartContext";
 
 const Navbar = () => {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
-    const { numberOfItems } = useSnackbar();
+    const { totalItems  } = useCart();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -49,7 +49,7 @@ const Navbar = () => {
                             <Link href="/cart" className="relative">
                               
                                     <span className="absolute -top-1 -right-1 bg-bloodRed text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                                        {numberOfItems}
+                                        {totalItems}
                                     </span>
                                
                                 <GetIcon name={"CartIcon"} className={"w-[32px] h-[32px]"} />

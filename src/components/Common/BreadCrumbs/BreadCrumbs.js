@@ -1,5 +1,6 @@
 'use client';
 
+import GetIcon from "@/utils/GetIcon";
 import { usePathname } from "next/navigation";
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -22,7 +23,7 @@ const BreadCrumbs = () => {
                         <ol className="flex items-center space-x-2">
                             {crumbs.map((name, idx) => (
                                 <li key={idx} className="flex items-center text-black">
-                                    {idx > 0 && <span className="mx-1">{'>'}</span>}
+                                    {idx > 0 && <span className="mx-1"> <GetIcon name="ArrowRightIcon" className="w-6 h-6 text-grey" /></span>}
                                     {idx < crumbs.length - 1 ? (
                                         <div className="text-black ">
                                             {name}

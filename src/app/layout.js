@@ -9,6 +9,7 @@ import { SnackbarProvider } from "@/context/SnackbarContext";
 import Navbar2 from "@/components/Common/Navbar2/Navbar2";
 import BreadCrumbs from "@/components/Common/BreadCrumbs/BreadCrumbs";
 import Footer from "@/components/Common/Footer/Footer";
+import { CartProvider } from '@/context/CartContext';
 
 const onest = Onest({
   subsets: ['latin'],
@@ -27,13 +28,15 @@ export default function RootLayout({ children }) {
         className={`${onest.className} antialiased`}
       >
         <SnackbarProvider>
-          <Navbar />
-          <Navbar2 />
-          <BreadCrumbs />
-          <Suspense fallback={<LoadingSkeleton />}>
-            {children}
-          </Suspense>
-          <Footer />
+          <CartProvider>
+            <Navbar />
+            <Navbar2 />
+            <BreadCrumbs />
+            <Suspense fallback={<LoadingSkeleton />}>
+              {children}
+            </Suspense>
+            <Footer />
+          </CartProvider>
         </SnackbarProvider>
 
       </body>

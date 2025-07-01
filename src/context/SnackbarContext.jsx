@@ -9,7 +9,6 @@ const SnackbarContext = createContext();
 export const SnackbarProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const [numberOfItems, setNumberOfItems] = useState(0);
   const [severity, setSeverity] = useState('info'); // info, success, error, warning
 
   const showSnackbar = useCallback((msg, level = 'info') => {
@@ -24,7 +23,7 @@ export const SnackbarProvider = ({ children }) => {
   };
 
   return (
-    <SnackbarContext.Provider value={{ showSnackbar, numberOfItems, setNumberOfItems }}>
+    <SnackbarContext.Provider value={{ showSnackbar }}>
       {children}
       <Snackbar
         open={open}
