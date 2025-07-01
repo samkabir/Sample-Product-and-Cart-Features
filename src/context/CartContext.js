@@ -2,10 +2,8 @@
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
-// Cart item type definition
 const CART_STORAGE_KEY = 'cartItems';
 
-// Cart actions
 const CART_ACTIONS = {
   ADD_ITEM: 'ADD_ITEM',
   REMOVE_ITEM: 'REMOVE_ITEM',
@@ -14,33 +12,31 @@ const CART_ACTIONS = {
   LOAD_CART: 'LOAD_CART'
 };
 
-// Initial cart state
 const initialCartState = {
   items: [],
   totalItems: 0,
   totalPrice: 0
 };
 
-// Cart reducer
 function cartReducer(state, action) {
   switch (action.type) {
     case CART_ACTIONS.ADD_ITEM: {
       const { item } = action.payload;
-      // Check for exact match including variations (color, size, ram, rom)
+
       const existingItemIndex = state.items.findIndex(cartItem => 
         cartItem.id === item.id 
       );
       
       let updatedItems;
       if (existingItemIndex >= 0) {
-        // Update existing item quantity
+
         updatedItems = state.items.map((cartItem, index) =>
           index === existingItemIndex
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
       } else {
-        // Add new item
+
         updatedItems = [...state.items, item];
       }
       
@@ -75,7 +71,7 @@ function cartReducer(state, action) {
       const { id, quantity } = action.payload;
       
       if (quantity <= 0) {
-        // Remove item if quantity is 0 or less
+
         return cartReducer(state, { 
           type: CART_ACTIONS.REMOVE_ITEM, 
           payload: { id } 
@@ -110,14 +106,11 @@ function cartReducer(state, action) {
   }
 }
 
-// Create cart context
 const CartContext = createContext();
 
-// Cart provider component
 export function CartProvider({ children }) {
   const [cartState, dispatch] = useReducer(cartReducer, initialCartState);
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     try {
       const savedCart = localStorage.getItem(CART_STORAGE_KEY);
@@ -130,7 +123,6 @@ export function CartProvider({ children }) {
     }
   }, []);
 
-  // Save cart to localStorage whenever cart state changes
   useEffect(() => {
     try {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartState));
@@ -139,7 +131,6 @@ export function CartProvider({ children }) {
     }
   }, [cartState]);
 
-  // Cart actions
   const addToCart = (item) => {
     dispatch({
       type: CART_ACTIONS.ADD_ITEM,
@@ -203,7 +194,6 @@ export function CartProvider({ children }) {
   );
 }
 
-// Custom hook to use cart context
 export function useCart() {
   const context = useContext(CartContext);
   
@@ -214,5 +204,4 @@ export function useCart() {
   return context;
 }
 
-// Export cart actions for external use if needed
 export { CART_ACTIONS };

@@ -12,13 +12,12 @@ const ProductDetails = ({ product }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const { showSnackbar } = useSnackbar();
-    const { addToCart, removeFromCart, getItemQuantity, isInCart, } = useCart();
+    const { addToCart } = useCart();
 
     if (!product) {
         return <div className="p-4">No product data available</div>;
     }
 
-    // Get color and RAM options from variations
     const getUniqueOptions = (attributeName) => {
         const options = new Map();
         product.variations?.forEach(variation => {
@@ -37,7 +36,6 @@ const ProductDetails = ({ product }) => {
     const ramOptions = getUniqueOptions('Ram');
     const romOptions = getUniqueOptions('Rom');
 
-    // Get selected color, RAM, ROM, and size from the selected variation
     const selectedColor = selectedVariation?.variation_attributes?.find(
         attr => attr.attribute.name === 'Color'
     )?.attribute_option.attribute_value;
@@ -54,9 +52,7 @@ const ProductDetails = ({ product }) => {
         attr => attr.attribute.name === 'Rom'
     )?.attribute_option.attribute_value;
 
-    // Handle variation selection
     const handleAttributeChange = (attributeName, value) => {
-        // Map of attribute names to their current selected values
         const selectedAttributes = {
             Color: selectedColor,
             Size: selectedSize,
@@ -64,10 +60,8 @@ const ProductDetails = ({ product }) => {
             Rom: selectedRom,
         };
 
-        // Update the selected value for the changed attribute
         selectedAttributes[attributeName] = value;
 
-        // Find a variation that matches all selected attributes (if set)
         const newVariation = product.variations?.find(variation => {
             return Object.entries(selectedAttributes).every(([attrName, attrValue]) => {
                 if (!attrValue) return true;
@@ -84,7 +78,6 @@ const ProductDetails = ({ product }) => {
         }
     };
 
-    // Color mapping for display
     const getColorClass = (color) => {
         const colorMap = {
             'Blue': 'bg-blue-500',
@@ -109,9 +102,7 @@ const ProductDetails = ({ product }) => {
     const originalPrice = selectedVariation?.regular_price || product.product_detail?.regular_price;
 
 
-    // Handle adding to cart
     const handleCartAdd = (product, variation, quantity) => {
-        // Create a new cart item object
         const newCartItem = {
             id: variation?.id || product.id,
             name: product.name,

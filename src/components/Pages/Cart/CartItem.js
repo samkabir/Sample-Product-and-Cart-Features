@@ -17,7 +17,7 @@ const CartItem = ({ item, selectedItems, setSelectedItems, toggleSelectItem, rem
         />
       </div>
 
-      <div className="flex gap-4 ml-6 w-full">
+      <div className="md:flex gap-4 ml-6 w-full">
         <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
           <Image 
             width={100}
@@ -67,7 +67,7 @@ const CartItem = ({ item, selectedItems, setSelectedItems, toggleSelectItem, rem
 
         </div>
 
-        <div className="text-right">
+        <div className="md:text-right">
           <div className="font-semibold text-lg">৳{item.price*item.quantity}</div>
           <div className="text-sm text-gray-500 line-through">৳{item.originalPrice*item.quantity}</div>
         </div>

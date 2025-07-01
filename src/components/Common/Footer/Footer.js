@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
           
           {/* About Section */}
-          <div className="lg:col-span-3 mt-2">
+          <div className="text-center md:text-justify lg:col-span-3 mt-2">
             <h3 className="text-base mb-4 text-lightGrey">ABOUT</h3>
             <ul className="space-y-2">
               {
@@ -67,7 +67,7 @@ const Footer = () => {
           </div>
           
           {/* Help Section */}
-          <div className="lg:col-span-3 mt-2">
+          <div className="text-center md:text-justify lg:col-span-3 mt-2">
             <h3 className="text-base mb-4 text-lightGrey">HELP</h3>
             <ul className="space-y-2">
               {
@@ -80,7 +80,7 @@ const Footer = () => {
           </div>
           
           {/* Support & Download Section */}
-          <div className="lg:col-span-2">
+          <div className="text-center md:text-justify lg:col-span-2">
             <h3 className="text-lg text-lightGrey mb-4">Need Support?</h3>
             <div className="mb-6">
               <div className="flex items-center gap-2 border border-white rounded p-3">
@@ -90,7 +90,7 @@ const Footer = () => {
             </div>
             
             <h4 className="text-lg text-lightGrey mb-4">DOWNLOAD APP</h4>
-            <div className="space-y-3">
+            <div className="flex flex-col items-center md:block space-y-3">
               <a href="#" className="block">
                 <Image
                   width={180}
@@ -136,8 +136,8 @@ const Footer = () => {
             </div>
             
             {/* Payment Methods */}
-            <div className="flex items-center space-x-4">
-              <span className="text-lightGrey text-lg">PAYMENTS ACCEPTED</span>
+            <div className="text-center md:text-justify md:flex items-center space-x-4">
+              <span className="text-lightGrey text-lg pb-4 md:mb-0">PAYMENTS ACCEPTED</span>
               <div className="flex">
                 {
                   PAYMENTS.map((image, index) => (

@@ -1,18 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import GetIcon from "@/utils/GetIcon";
 import Image from "next/image";
-import ShopIcon from "@/icons/AnimatedIcons/ShopIcon.gif"; 
-import { getCategory } from "@/api/getCategory";
+import ShopIcon from "@/icons/AnimatedIcons/ShopIcon.gif";
 import useCategoryData from "@/hooks/useCategoryData";
 
 const Navbar2 = () => {
-    const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
-    
+
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState(null);
@@ -47,10 +45,10 @@ const Navbar2 = () => {
                     <nav className="container mx-auto px-4 py-4 flex justify-between items-center w-full">
                         <div className="flex items-center gap-4">
                             {/* Desktop Categories with Dropdown */}
-                            <div 
+                            <div
                                 className="relative hidden md:block"
-                                
-                                
+
+
                             >
                                 <div className="flex gap-2 items-center border-r-2 border-gray-300 pr-6 cursor-pointer" onMouseEnter={handleMouseEnter}>
                                     <GetIcon name={"HamburgerIcon"} className="w-5 h-5 text-green" />
@@ -67,18 +65,17 @@ const Navbar2 = () => {
                                                 {categories.map((category) => (
                                                     <div
                                                         key={category.id}
-                                                        className={`p-3 hover:bg-gray-50 cursor-pointer border-b ${
-                                                            hoveredCategory === category.id ? 'bg-gray-50' : ''
-                                                        }`}
+                                                        className={`p-3 hover:bg-gray-50 cursor-pointer border-b ${hoveredCategory === category.id ? 'bg-gray-50' : ''
+                                                            }`}
                                                         onMouseEnter={() => handleCategoryHover(category.id)}
                                                     >
-                                                        <Link 
+                                                        <Link
                                                             href={`/category/${category.slug}`}
                                                             className="flex items-center gap-2"
                                                         >
                                                             {category.image && (
-                                                                <img 
-                                                                    src={category.image} 
+                                                                <img
+                                                                    src={category.image}
                                                                     alt={category.name}
                                                                     className="w-8 h-8 object-cover rounded"
                                                                 />
@@ -98,7 +95,7 @@ const Navbar2 = () => {
                                                             .find(cat => cat.id === hoveredCategory)
                                                             ?.subcategories?.map((subcategory) => (
                                                                 <div key={subcategory.id} className="mb-4">
-                                                                    <Link 
+                                                                    <Link
                                                                         href={`/category/${subcategory.slug}`}
                                                                         className="font-semibold text-sm text-gray-800 hover:text-green-600 mb-2 block"
                                                                     >
@@ -108,7 +105,7 @@ const Navbar2 = () => {
                                                                         <ul className="space-y-1">
                                                                             {subcategory.subchilds.slice(0, 6).map((subchild) => (
                                                                                 <li key={subchild.id}>
-                                                                                    <Link 
+                                                                                    <Link
                                                                                         href={`/category/${subchild.slug}`}
                                                                                         className="text-xs text-gray-600 hover:text-green-600"
                                                                                     >
@@ -188,14 +185,14 @@ const Navbar2 = () => {
                             <div className="p-4">
                                 {categories.map((category) => (
                                     <div key={category.id} className="mb-4">
-                                        <Link 
+                                        <Link
                                             href={`/category/${category.slug}`}
                                             className="flex items-center gap-2 font-semibold text-gray-800 mb-2"
                                             onClick={() => setMobileDropdownOpen(false)}
                                         >
                                             {category.image && (
-                                                <img 
-                                                    src={category.image} 
+                                                <img
+                                                    src={category.image}
                                                     alt={category.name}
                                                     className="w-6 h-6 object-cover rounded"
                                                 />
@@ -206,7 +203,7 @@ const Navbar2 = () => {
                                             <div className="ml-4 grid grid-cols-1 gap-2">
                                                 {category.subcategories.map((subcategory) => (
                                                     <div key={subcategory.id}>
-                                                        <Link 
+                                                        <Link
                                                             href={`/category/${subcategory.slug}`}
                                                             className="text-sm text-gray-600 hover:text-green-600 block"
                                                             onClick={() => setMobileDropdownOpen(false)}
@@ -225,17 +222,22 @@ const Navbar2 = () => {
 
                     {/* Mobile Menu */}
                     {menuOpen && (
-                        <div className="md:hidden bg-[#19192a] shadow-lg font-bold min-h-min absolute inset-0 mt-20 z-[99] overflow-auto">
-                            <ul className="p-4 space-y-4">
-                                <li className="flex items-center gap-2 text-white">
-                                    <GetIcon name="PackageIcon" className="text-grey" />
+                        <div className="md:hidden bg-[#19192a] text-white shadow-lg font-bold min-h-min absolute inset-0 mt-10 z-[99] overflow-auto">
+                            <ul className="p-4 space-y-4 uppercase">
+                                <li>Electronics</li>
+                                <li>Fashion</li>
+                                <li>Home & Garden</li>
+                                <li>Sports & Outdoors</li>
+                                <li>Health & Beauty</li>
+                                <li className="flex">
+                                    <GetIcon name="PackageIcon" className="w-7 h-7 text-white" />
                                     track Order
                                 </li>
-                                <li className="flex items-center gap-2 text-white">
-                                    <GetIcon name="HeadsetIcon" className="text-grey" />
+                                <li className="flex">
+                                    <GetIcon name="HeadsetIcon" className="w-7 h-7 text-white" />
                                     help center
                                 </li>
-                                <li className="flex items-center gap-2 text-white">
+                                <li className="flex items-center gap-2">
                                     <Image src={ShopIcon} width={25} height={25} alt="ShopIcon" />
                                     Sell with us
                                 </li>

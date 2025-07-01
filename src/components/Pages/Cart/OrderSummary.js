@@ -17,13 +17,13 @@ const OrderSummary = ({selectedItems, totalItems, subtotal, couponCode, setCoupo
             </div>
 
             <div className="mb-6">
-              <div className="flex gap-2">
+              <div className="md:flex gap-2">
                 <input
                   type="text"
                   placeholder="Store / Falcon coupon"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
+                  className="flex-1 px-3 py-2 border mb-2 md:mb-0 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
                 />
                 <button className="px-6 py-2 bg-green text-white rounded-lg hover:bg-green font-medium">
                   Apply

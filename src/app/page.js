@@ -1,16 +1,11 @@
 "use client"
 
-import { Button } from "@mui/material";
-import GetIcon from "../utils/GetIcon";
 import LoadingSkeleton from '../utils/Loading';
-import { useSnackbar } from "../context/SnackbarContext";
-import CButton from "../components/UI/CButton/CButton";
 import { useEffect, useState } from "react";
 import { getProducts } from "@/api/getProducts";
 import ProductCard from "@/components/UI/ProductCard/ProductCard";
 
 export default function Home() {
-  // const { showSnackbar } = useSnackbar();
   const [products, setProducts] = useState([]);
   const getAllProducts = async () => {
     try {

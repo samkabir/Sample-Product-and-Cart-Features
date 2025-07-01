@@ -12,6 +12,7 @@ const Cart = () => {
     const [selectedItems, setSelectedItems] = useState(new Set());
     const [cartViewItems, setCartViewItems] = useState([]);
     const [couponCode, setCouponCode] = useState('');
+    const [isClient, setIsClient] = useState(false);
     const [agreeToTerms, setAgreeToTerms] = useState(true);
     const { items, totalItems, totalPrice, removeFromCart, updateQuantity } = useCart();
     
@@ -105,6 +106,10 @@ const Cart = () => {
         setCartViewItems(groupedByMerchant);
     }, [items]);
 
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
 
     return (
         <div className="lg:grid grid-cols-12 mx-auto p-4 min-h-screen">
@@ -114,8 +119,8 @@ const Cart = () => {
                     {/* Cart Items */}
                     <div className="col-span-8 bg-white rounded-lg p-4 fade-in-up">
                         <div className="border-b pb-4">
-                            <div className="flex items-center justify-between">
-                                <h1 className="text-[32px] font-bold text-[#0F172A]">My Cart ({typeof window !== 'undefined' && totalItems })</h1>
+                            <div className="md:flex items-center justify-between">
+                                <h1 className="text-[32px] font-bold text-[#0F172A]">My Cart ({isClient ? totalItems : 0})</h1>
                                 <div className="flex items-center gap-1">
                                     <label className="flex items-center gap-2 cursor-pointer">
                                         <input

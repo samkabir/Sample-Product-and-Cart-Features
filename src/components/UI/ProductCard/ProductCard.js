@@ -1,21 +1,16 @@
 import React from 'react';
-import { StarIcon, HeartIcon } from '@heroicons/react/24/outline';
-import { StarIcon as StarSolidIcon, HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const ProductCard = ({ product }) => {
-    // Calculate discount percentage
     const discountPercentage = product.regular_price && product.discount_price
         ? Math.round(((parseFloat(product.regular_price) - parseFloat(product.discount_price)) / parseFloat(product.regular_price)) * 100)
         : 0;
 
-    // Format price with comma separator
     const formatPrice = (price) => {
         return parseFloat(price).toLocaleString('en-BD');
     };
 
-    // Check if product is in stock
     const isInStock = product.available_stock > 0;
 
 

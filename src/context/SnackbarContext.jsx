@@ -1,4 +1,4 @@
-'use client'; // Needed if using App Router
+'use client';
 
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import Snackbar from '@mui/material/Snackbar';
@@ -9,7 +9,8 @@ const SnackbarContext = createContext();
 export const SnackbarProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const [severity, setSeverity] = useState('info'); // info, success, error, warning
+  const [severity, setSeverity] = useState('info'); 
+  // info, success, error, warning
 
   const showSnackbar = useCallback((msg, level = 'info') => {
     setMessage(msg);
