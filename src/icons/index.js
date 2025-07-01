@@ -21,6 +21,10 @@ import  MinusIcon from './MinusIcon.svg';
 import  PackageMovingIcon from './PackageMovingIcon.svg';
 import  VerifiedIcon from './VerifiedIcon.svg';
 import  ChatOutlineIcon from './ChatOutlineIcon.svg';
+import  LogoLargeIcon from './LogoLargeIcon.svg';
+import  TwitterIcon from './TwitterIcon.svg';
+import  InstagramIcon from './InstagramIcon.svg';
+import  FacebookIcon from './FacebookIcon.svg';
 
 export const icons = {
   TrashIcon,
@@ -45,5 +49,9 @@ export const icons = {
   MinusIcon,
   PackageMovingIcon,
   VerifiedIcon,
-  ChatOutlineIcon
+  ChatOutlineIcon,
+  LogoLargeIcon,
+  TwitterIcon,
+  InstagramIcon,
+  FacebookIcon
 };

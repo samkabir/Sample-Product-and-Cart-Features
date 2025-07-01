@@ -47,11 +47,11 @@ const Navbar = () => {
                         
                         <div className=" flex gap-3">
                             <Link href="/cart" className="relative">
-                                {numberOfItems > 0 && (
+                              
                                     <span className="absolute -top-1 -right-1 bg-bloodRed text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                                         {numberOfItems}
                                     </span>
-                                )}
+                               
                                 <GetIcon name={"CartIcon"} className={"w-[32px] h-[32px]"} />
                             </Link>
                             <GetIcon name={"UserIcon"} className={"w-[32px] h-[32px"} />
