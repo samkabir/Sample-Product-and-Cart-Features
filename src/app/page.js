@@ -34,33 +34,15 @@ export default function Home() {
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 sm:px-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
        
-{/*         
-      <p className="text-5xl text-darkRed">asdklhjaskldhjaksldjaklsjdlkas</p>
-      <GetIcon name="TrashIcon" className="w-5 h-5 text-darkRed" />
-
-
-      <LoadingSkeleton type="text" width={300} height={30} lines={3} />
-        
-        <LoadingSkeleton type="rectangular" width={400} height={150} className="mt-4" />
-
-        <Button variant="contained" color="primary" onClick={() => showSnackbar('Saved!', 'success')}>
-        Show Success Snackbar
-      </Button>
-
-
-      <CButton variant="contained" color="primary" onClick={() => showSnackbar('Saved!', 'success')}>
-        Show Success Snackbar
-      </CButton> */}
-
-     
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-up">
           {products.length > 0 ? (
             products.map((productData, key) => (
               <ProductCard key={key} product={productData} />
             ))
           ) : (
-            <LoadingSkeleton type="rectangular" width={300} height={200} />
+            Array.from({ length: 19 }).map((_, idx) => (
+              <LoadingSkeleton key={idx} type="rectangular" width={300} height={200} />
+            ))
           )}
         </div>
 

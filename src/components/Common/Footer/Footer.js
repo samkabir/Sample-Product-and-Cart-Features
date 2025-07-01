@@ -97,7 +97,7 @@ const Footer = () => {
                   height={54}
                   src="/images/google.png" 
                   alt="Get it on Google Play" 
-                  className="h-10 w-auto"
+                  className="h-[54px] w-[180px]"
                 />
               </a>
               <a href="#" className="block">
@@ -106,7 +106,7 @@ const Footer = () => {
                   height={54}
                   src="/images/apple.png" 
                   alt="Get it on Google Play" 
-                  className="h-10 w-auto"
+                  className="h-[54px] w-[180px]"
                 />
               </a>
             </div>
@@ -124,13 +124,13 @@ const Footer = () => {
                 <span className="text-gray-300 text-sm mr-2">Follow us on</span>
               </div>
               <div className=''>
-                <GetIcon name="FacebookIcon" className="w-5 h-5 text-white hover:text-blue-500 transition-colors" />
+                <GetIcon name="FacebookIcon" className="w-8 h-8 text-white hover:text-blue-500 transition-colors" />
               </div>
               <div className=''>
-                <GetIcon name="InstagramIcon" className="w-6 h-6 text-white hover:text-orange-500 transition-colors" />
+                <GetIcon name="InstagramIcon" className="w-10 h-10 text-white hover:text-orange-500 transition-colors" />
               </div>
               <div className=''>
-                <GetIcon name="TwitterIcon" className="w-6 h-6 text-white hover:text-blue-400 transition-colors" />
+                <GetIcon name="TwitterIcon" className="w-[35px] h-[35px] text-white hover:text-blue-400 transition-colors" />
               </div>
               
             </div>

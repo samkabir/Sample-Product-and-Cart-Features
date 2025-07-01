@@ -3,15 +3,15 @@ import GetIcon from '@/utils/GetIcon';
 import React, { useState } from 'react';
 
 const ProductSpecification = ({product}) => {
-    console.log(product);
     const [expanded, setExpanded] = useState(false);
 
     const toggleExpanded = () => setExpanded(!expanded);
+    console.log(product);
     return (
-        <div className="bg-white p-6 rounded shadow-sm my-5">
+        <div className="bg-white p-6 rounded shadow-sm my-5 fade-in-up">
             <h2 className="text-xl font-semibold mb-4">Specification</h2>
 
-            <div className={`relative text-gray-700 ${expanded ? '' : 'max-h-24 overflow-hidden'}`}>
+            <div className={`relative text-gray-700 ${expanded ? '' : 'max-h-32 overflow-hidden'}`}>
                 <p className="">
                     <span className='font-bold'>BRAND:</span> {product?.brand?.name}
                 </p>
@@ -31,6 +31,9 @@ const ProductSpecification = ({product}) => {
                     : 'No Stock Available'  }
                 </p>
                 
+                <p className="">
+                    {product?.description}
+                </p>
 
                 {(!expanded && product?.description?.length > 100) && (
                     <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent" />

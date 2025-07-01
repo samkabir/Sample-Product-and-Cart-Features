@@ -12,7 +12,7 @@ const ProductDetails = ({ product }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const { showSnackbar } = useSnackbar();
-    const { addToCart, removeFromCart, getItemQuantity, isInCart,  } = useCart();
+    const { addToCart, removeFromCart, getItemQuantity, isInCart, } = useCart();
 
     if (!product) {
         return <div className="p-4">No product data available</div>;
@@ -125,10 +125,10 @@ const ProductDetails = ({ product }) => {
             image: productImages[selectedImage] || product.thumbnail,
             store: product.merchant?.shop_name || 'Unknown Store'
         };
-        
+
         addToCart(newCartItem);
-        
-        showSnackbar('Saved!', 'success');
+
+        showSnackbar('Added to Cart', 'success');
     };
 
 
@@ -136,7 +136,7 @@ const ProductDetails = ({ product }) => {
         <div className="max-w-7xl mx-auto p-4 lg:px-6 lg:pt-6 ">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
                 {/* Product Images */}
-                <div className="lg:col-span-4">
+                <div className="lg:col-span-4 fade-in-left">
                     <div className="space-y-4">
                         {/* Main Image */}
                         <div className="aspect-square rounded-lg overflow-hidden">
@@ -166,7 +166,7 @@ const ProductDetails = ({ product }) => {
                 </div>
 
                 {/* Product Info */}
-                <div className="lg:col-span-5 ">
+                <div className="lg:col-span-5 fade-in-up">
                     {/* Title and Rating */}
                     <div>
                         <h1 className="text-xl font-medium text-black">
@@ -234,19 +234,24 @@ const ProductDetails = ({ product }) => {
                     {/* Promotion */}
                     <div className="flex items-center space-x-2 my-8">
                         <span className="text-sm text-gray-600">Promotion</span>
-                        <span className="bg-orange-500 text-white px-2 py-1 text-xs rounded">
-                            Min. spend ৳550 ✓
-                        </span>
+                        <div className="ribbon-button-container">
+                            <button className="ribbon-button">
+                                Min. spend ৳550
+                                <svg className="dropdown-arrow" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 10l5 5 5-5z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     {/* Color Selection */}
-                    {colorOptions.length>1 &&
+                    {colorOptions.length > 1 &&
                         <div className="mt-2">
                             <h3 className="text-lg font-medium">
                                 Available Color: <span className="text-gray-600">{selectedColor}</span>
                             </h3>
                             <div className="flex space-x-3">
-                                {colorOptions.length>1 && colorOptions.map((option) => (
+                                {colorOptions.length > 1 && colorOptions.map((option) => (
                                     <button
                                         key={option.id}
                                         onClick={() => handleAttributeChange('Color', option.attribute_value)}
@@ -260,8 +265,8 @@ const ProductDetails = ({ product }) => {
                             </div>
                         </div>}
 
-                                {/* Size Selection */}
-                        {sizeOptions.length > 0 &&
+                    {/* Size Selection */}
+                    {sizeOptions.length > 0 &&
                         <div className="mt-2">
                             <h3 className="text-lg font-medium">
                                 Available Size: <span className="text-gray-600">{selectedSize}</span>
@@ -331,7 +336,7 @@ const ProductDetails = ({ product }) => {
                         <div className="flex items-center space-x-4 max-w-[200px]">
                             <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full">
 
-                                <div className="w-[33px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer" onClick={(e) =>{
+                                <div className="w-[33px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer" onClick={(e) => {
                                     e.preventDefault();
                                     setQuantity(Math.max(1, quantity - 1))
                                 }} >
@@ -343,10 +348,9 @@ const ProductDetails = ({ product }) => {
                                     {quantity.toString().padStart(2, '0')}
                                 </span>
 
-                                <div className="w-[33px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer" onClick={(e) => 
-                                    {
-                                        e.preventDefault();
-                                        setQuantity(quantity + 1)
+                                <div className="w-[33px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer" onClick={(e) => {
+                                    e.preventDefault();
+                                    setQuantity(quantity + 1)
                                 }} >
                                     <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
                                 </div>
@@ -365,7 +369,7 @@ const ProductDetails = ({ product }) => {
                 </div>
 
                 {/* Delivery Options Sidebar */}
-                <div className="lg:col-span-3 lg:max-w-sm lg:ml-auto mt-8 lg:mt-0 select-none">
+                <div className="lg:col-span-3 lg:max-w-sm lg:ml-auto mt-8 lg:mt-0 select-none fade-in-right">
                     <div className="bg-white  rounded-lg  space-y-4">
                         <div className='border border-gray-200 px-3 py-2 rounded-[12px]' >
                             <h3 className="text-lg text-grey font-semibold">Delivery Options</h3>
@@ -416,11 +420,11 @@ const ProductDetails = ({ product }) => {
                                         <div className="text-sm font-medium">{product.merchant?.shop_name}</div>
                                         <GetIcon name="VerifiedIcon" className="w-4 h-4 text-blue-500 inline-block ml-1" />
                                     </div>
-                                    <div className="text-xs bg-orange-500 text-white px-2 py-1 rounded inline-block">
-                                        Rising Star
+                                    <div className="w-[138px] h-[20px]">
+                                        <GetIcon name="RisingStarIcon" className="w-full h-full" />
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div className='flex items-center justify-between mt-3 gap-2'>

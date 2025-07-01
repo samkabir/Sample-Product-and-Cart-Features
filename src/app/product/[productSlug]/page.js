@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { getSingleProduct } from '@/api/getSingleProduct';
 import SingleProduct from '@/components/Pages/SingleProduct/SingleProduct';
+import LoadingSkeleton from '@/utils/Loading';
 
 const SingleProductPage = () => {
   const params = useParams();
@@ -35,7 +36,31 @@ const SingleProductPage = () => {
           {singleProduct ? (
             <SingleProduct product={singleProduct} />
           ) : (
+            <>
             <div className="text-center text-gray-500">Loading product details...</div>
+            <div className="grid grid-cols-12 gap-0 px-4 py-10">
+                <div className="col-start-2 col-end-12 w-full">
+                  <div className="grid grid-cols-12 gap-1 w-full">
+                    <div className='col-span-3'>
+                      <LoadingSkeleton type="rectangular" width={300} height={300} />
+                    </div>
+                    <div className='col-span-5'>
+                      <LoadingSkeleton type="rectangular" width={400} height={30} />
+                      <LoadingSkeleton type="rectangular" width={400} height={30} />
+                      <LoadingSkeleton type="rectangular" width={400} height={30} />
+                      <LoadingSkeleton type="rectangular" width={400} height={30} />
+                      <LoadingSkeleton type="rectangular" width={400} height={30} />
+                    </div>
+                    <div className='col-span-4'>
+                      <LoadingSkeleton type="rectangular" width={300} height={150} />
+                      <LoadingSkeleton type="rectangular" width={300} height={150} />
+                    </div>
+                    
+                  </div>
+                </div>
+            </div>
+            </>
+                
           )}
     </div>
   );

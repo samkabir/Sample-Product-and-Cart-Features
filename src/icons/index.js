@@ -27,6 +27,7 @@ import  InstagramIcon from './InstagramIcon.svg';
 import  FacebookIcon from './FacebookIcon.svg';
 import  ShopOutlineIcon from './ShopOutlineIcon.svg';
 import  ArrowRightIcon from './ArrowRightIcon.svg';
+import  RisingStarIcon from './RisingStarIcon.svg';
 
 export const icons = {
   TrashIcon,
@@ -57,5 +58,6 @@ export const icons = {
   InstagramIcon,
   FacebookIcon,
   ShopOutlineIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  RisingStarIcon
 };

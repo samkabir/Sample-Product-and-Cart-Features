@@ -7,16 +7,17 @@ import GetIcon from "@/utils/GetIcon";
 import Image from "next/image";
 import ShopIcon from "@/icons/AnimatedIcons/ShopIcon.gif"; 
 import { getCategory } from "@/api/getCategory";
+import useCategoryData from "@/hooks/useCategoryData";
 
 const Navbar2 = () => {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
-    const [categories, setCategories] = useState([]);
+    
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState(null);
 
-    
+    const categories = useCategoryData();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -25,26 +26,6 @@ const Navbar2 = () => {
     const toggleMobileDropdown = () => {
         setMobileDropdownOpen(!mobileDropdownOpen);
     };
-
-    const fetchCategories = async () => {
-        try {
-            const response = await getCategory();
-            if (response.success) {
-                setCategories(response.data.data);
-            } else {
-                console.log('Failed to fetch categories:', response.message);
-            }
-        } catch (error) {
-            console.log('Error fetching categories:', error);
-        }
-    };
-
-    useEffect(() => {
-        setMenuOpen(false);
-        setMobileDropdownOpen(false);
-        setDropdownOpen(false);
-        fetchCategories();
-    }, [pathname]);
 
     const handleMouseEnter = () => {
         setDropdownOpen(true);
@@ -68,10 +49,10 @@ const Navbar2 = () => {
                             {/* Desktop Categories with Dropdown */}
                             <div 
                                 className="relative hidden md:block"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
+                                
+                                
                             >
-                                <div className="flex gap-2 items-center border-r-2 border-gray-300 pr-6 cursor-pointer">
+                                <div className="flex gap-2 items-center border-r-2 border-gray-300 pr-6 cursor-pointer" onMouseEnter={handleMouseEnter}>
                                     <GetIcon name={"HamburgerIcon"} className="w-5 h-5 text-green" />
                                     Categories
                                     <GetIcon name={"ChevronDownIcon"} className="w-4 h-4 text-gray-500" />
@@ -79,10 +60,10 @@ const Navbar2 = () => {
 
                                 {/* Desktop Dropdown */}
                                 {dropdownOpen && (
-                                    <div className="absolute top-full left-0 mt-2 bg-white shadow-lg border rounded-lg min-w-[800px] z-50">
+                                    <div className="absolute top-full left-0 mt-2 bg-white shadow-lg border rounded-lg min-w-[800px] z-50" onMouseLeave={handleMouseLeave}>
                                         <div className="flex">
                                             {/* Categories List */}
-                                            <div className="w-1/3 border-r">
+                                            <div className="w-1/3 border-r max-h-[500px] overflow-y-auto">
                                                 {categories.map((category) => (
                                                     <div
                                                         key={category.id}
@@ -110,7 +91,7 @@ const Navbar2 = () => {
                                             </div>
 
                                             {/* Subcategories */}
-                                            <div className="w-2/3 p-4">
+                                            <div className="w-2/3 p-4 max-h-[500px] overflow-y-auto">
                                                 {hoveredCategory && (
                                                     <div className="grid grid-cols-2 gap-6">
                                                         {categories

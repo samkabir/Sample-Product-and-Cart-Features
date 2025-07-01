@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
                     <Image
                         src={product.thumbnail}
                         alt={product.name}
-                        className="sm:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="sm:h-56 object-cover group-hover:scale-105 transition-transform duration-300 py-2"
                         width={300}
                         height={200}
                         loading="lazy"
@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
 
 
                     {/* Price Section */}
-                    <div className="mb-3">
+                    <div className="flex items-center mb-3 justify-between">
                         <div className="flex items-center space-x-2">
                             {product.discount_price && parseFloat(product.discount_price) < parseFloat(product.regular_price) ? (
                                 <>
@@ -97,20 +97,21 @@ const ProductCard = ({ product }) => {
                                 </span>
                             )}
                         </div>
+                         {/* Stock Info */}
+                        <div className="flex items-center">
+                            <span className={`text-xs px-2 py-1 rounded-full ${isInStock
+                                    ? 'bg-green-100 text-green-800'
+                                    : 'bg-red-100 text-red-800'
+                                }`}>
+                                {isInStock
+                                    ? `${product.available_stock} in stock`
+                                    : 'Out of stock'
+                                }
+                            </span>
+                        </div>
                     </div>
 
-                    {/* Stock Info */}
-                    <div className="mb-4">
-                        <span className={`text-xs px-2 py-1 rounded-full ${isInStock
-                                ? 'bg-green-100 text-green-800'
-                                : 'bg-red-100 text-red-800'
-                            }`}>
-                            {isInStock
-                                ? `${product.available_stock} in stock`
-                                : 'Out of stock'
-                            }
-                        </span>
-                    </div>
+                   
 
                     {/* Variant Indicator */}
                     {product.is_variant && (

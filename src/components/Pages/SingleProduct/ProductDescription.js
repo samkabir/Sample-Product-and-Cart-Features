@@ -8,7 +8,7 @@ const ProductDescription = ({ product }) => {
   const toggleExpanded = () => setExpanded(!expanded);
 
   return (
-    <div className="bg-white p-6 rounded shadow-sm my-5">
+    <div className="bg-white p-6 rounded shadow-sm my-5 fade-in-up">
       <h2 className="text-xl font-semibold mb-4">Description</h2>
 
       <div className={`relative text-gray-700 ${expanded ? '' : 'max-h-24 overflow-hidden'}`}>

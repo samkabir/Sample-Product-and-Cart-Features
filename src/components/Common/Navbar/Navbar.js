@@ -38,7 +38,7 @@ const Navbar = () => {
                             <input
                                 type="text"
                                 placeholder="Search..."
-                                className="lg:min-w-[763px] h-[48px] px-4 rounded-lg bg-[#2c2c3a] text-white rounded-l-xs rounded-r-none bg-white"
+                                className="lg:min-w-[763px] h-[48px] px-4 rounded-lg bg-[#2c2c3a]  rounded-l-xs rounded-r-none bg-white"
                             />
                             <div className="flex items-center bg-green h-[48px] w-[48px] justify-center rounded-r-lg">
                                 <GetIcon name={"SearchIcon"} className={""} />

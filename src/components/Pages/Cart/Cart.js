@@ -6,6 +6,7 @@ import GetIcon from '@/utils/GetIcon';
 import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
 import CButton from '@/components/UI/CButton/CButton';
+import { useSnackbar } from '@/context/SnackbarContext';
 
 const Cart = () => {
     const [selectedItems, setSelectedItems] = useState(new Set());
@@ -13,19 +14,21 @@ const Cart = () => {
     const [couponCode, setCouponCode] = useState('');
     const [agreeToTerms, setAgreeToTerms] = useState(true);
     const { items, totalItems, totalPrice, removeFromCart, updateQuantity } = useCart();
+    
+    const { showSnackbar } = useSnackbar();
 
     const handleUpdate = (id, newQuantity) => {
         updateQuantity(id, newQuantity);
     };
 
     const removeItem = (id) => {
-        console.log("Removing item with id:", id);
         removeFromCart(id);
         setSelectedItems(prev => {
             const newSet = new Set(prev);
             newSet.delete(id);
             return newSet;
         });
+        showSnackbar('Item Removed from Cart!', 'success');
     };
 
     const toggleSelectItem = (id) => {
@@ -109,17 +112,17 @@ const Cart = () => {
 
                 <div className='lg:grid grid-cols-12 gap-4 mb-4'>
                     {/* Cart Items */}
-                    <div className="col-span-8 bg-white rounded-lg p-4">
+                    <div className="col-span-8 bg-white rounded-lg p-4 fade-in-up">
                         <div className="border-b pb-4">
                             <div className="flex items-center justify-between">
-                                <h1 className="text-[32px] font-bold text-[#0F172A]">My Cart ({totalItems})</h1>
+                                <h1 className="text-[32px] font-bold text-[#0F172A]">My Cart ({typeof window !== 'undefined' && totalItems })</h1>
                                 <div className="flex items-center gap-1">
                                     <label className="flex items-center gap-2 cursor-pointer">
                                         <input
                                             type="checkbox"
                                             checked={selectedItems.size === items.length && items.length > 0}
                                             onChange={toggleSelectAll}
-                                            className="w-4 h-4 text-green border-gray-300 rounded focus:ring-green"
+                                            className="w-4 h-4 text-green border-gray-300 rounded "
                                         />
                                         <span className="text-gray text-sm">Select All</span>
                                     </label>
@@ -183,7 +186,7 @@ const Cart = () => {
                         
                     </div>
 
-                    <div className="col-span-4">
+                    <div className="col-span-4 fade-in-right">
                         <OrderSummary selectedItems={selectedItems} totalItems={totalItems} subtotal={subtotal} couponCode={couponCode} setCouponCode={setCouponCode} agreeToTerms={agreeToTerms} setAgreeToTerms={setAgreeToTerms} />
                     </div>
                 </div>

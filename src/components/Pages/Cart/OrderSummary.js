@@ -47,7 +47,7 @@ const OrderSummary = ({selectedItems, totalItems, subtotal, couponCode, setCoupo
                 type="checkbox"
                 checked={agreeToTerms}
                 onChange={(e) => setAgreeToTerms(e.target.checked)}
-                className="w-4 h-4 mt-0.5 text-green border-gray-300 rounded focus:ring-green"
+                className="w-4 h-4 mt-0.5 border-gray-300 rounded"
               />
               <span>
                 I have read and agree to the Terms and Conditions,
