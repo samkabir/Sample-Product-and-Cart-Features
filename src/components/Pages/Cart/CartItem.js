@@ -64,6 +64,156 @@ const CartItem = ({ item, selectedItems, setSelectedItems, toggleSelectItem, rem
                 </div>
                 
             </div>
+            <div className="mt-2">
+                <div className="flex items-center space-x-4 ">
+                    <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full max-w-[160px]">
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer  select-none" onClick={(e) =>{
+                           
+                            handleUpdate(item.id, item.quantity - 1)
+                        }} >
+                            <GetIcon name="MinusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+
+
+                        <span className="px-4 py-2 text-center font-bold select-none">
+                            {item?.quantity?.toString().padStart(2, '0')}
+                        </span>
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer  select-none" onClick={(e) => 
+                            {
+                            
+                                handleUpdate(item.id, item.quantity + 1)
+                        }} >
+                            <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+                    </div>
+                    <div className="flex items-center" onClick={() => removeItem(item.id)}>
+                        <GetIcon name="TrashIcon" className="w-5 h-5 hover:text-bloodRed text-lightGrey cursor-pointer" />
+                    </div>
+                </div>
+                
+            </div>
+            <div className="mt-2">
+                <div className="flex items-center space-x-4 ">
+                    <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full max-w-[160px]">
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer  select-none" onClick={(e) =>{
+                           
+                            handleUpdate(item.id, item.quantity - 1)
+                        }} >
+                            <GetIcon name="MinusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+
+
+                        <span className="px-4 py-2 text-center font-bold select-none">
+                            {item?.quantity?.toString().padStart(2, '0')}
+                        </span>
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer  select-none" onClick={(e) => 
+                            {
+                            
+                                handleUpdate(item.id, item.quantity + 1)
+                        }} >
+                            <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+                    </div>
+                    <div className="flex items-center" onClick={() => removeItem(item.id)}>
+                        <GetIcon name="TrashIcon" className="w-5 h-5 hover:text-bloodRed text-lightGrey cursor-pointer" />
+                    </div>
+                </div>
+                
+            </div>
+            <div className="mt-2">
+                <div className="flex items-center space-x-4 ">
+                    <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full max-w-[160px]">
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer  select-none" onClick={(e) =>{
+                           
+                            handleUpdate(item.id, item.quantity - 1)
+                        }} >
+                            <GetIcon name="MinusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+
+
+                        <span className="px-4 py-2 text-center font-bold select-none">
+                            {item?.quantity?.toString().padStart(2, '0')}
+                        </span>
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer  select-none" onClick={(e) => 
+                            {
+                            
+                                handleUpdate(item.id, item.quantity + 1)
+                        }} >
+                            <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+                    </div>
+                    <div className="flex items-center" onClick={() => removeItem(item.id)}>
+                        <GetIcon name="TrashIcon" className="w-5 h-5 hover:text-bloodRed text-lightGrey cursor-pointer" />
+                    </div>
+                </div>
+                
+            </div>
+            <div className="mt-2">
+                <div className="flex items-center space-x-4 ">
+                    <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full max-w-[160px]">
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer  select-none" onClick={(e) =>{
+                           
+                            handleUpdate(item.id, item.quantity - 1)
+                        }} >
+                            <GetIcon name="MinusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+
+
+                        <span className="px-4 py-2 text-center font-bold select-none">
+                            {item?.quantity?.toString().padStart(2, '0')}
+                        </span>
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer  select-none" onClick={(e) => 
+                            {
+                            
+                                handleUpdate(item.id, item.quantity + 1)
+                        }} >
+                            <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+                    </div>
+                    <div className="flex items-center" onClick={() => removeItem(item.id)}>
+                        <GetIcon name="TrashIcon" className="w-5 h-5 hover:text-bloodRed text-lightGrey cursor-pointer" />
+                    </div>
+                </div>
+                
+            </div>
+            <div className="mt-2">
+                <div className="flex items-center space-x-4 ">
+                    <div className="flex items-center justify-between border border-gray-300 h-[40px] rounded-full p-[2px] w-full max-w-[160px]">
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group cursor-pointer  select-none" onClick={(e) =>{
+                           
+                            handleUpdate(item.id, item.quantity - 1)
+                        }} >
+                            <GetIcon name="MinusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+
+
+                        <span className="px-4 py-2 text-center font-bold select-none">
+                            {item?.quantity?.toString().padStart(2, '0')}
+                        </span>
+
+                        <div className="w-[36px] h-[33px] rounded-full bg-lighterGrey hover:bg-gray-400 flex items-center justify-center group  cursor-pointer  select-none" onClick={(e) => 
+                            {
+                            
+                                handleUpdate(item.id, item.quantity + 1)
+                        }} >
+                            <GetIcon name="PlusIcon" className="w-5 h-5 text-lightGrey group-hover:text-black" />
+                        </div>
+                    </div>
+                    <div className="flex items-center" onClick={() => removeItem(item.id)}>
+                        <GetIcon name="TrashIcon" className="w-5 h-5 hover:text-bloodRed text-lightGrey cursor-pointer" />
+                    </div>
+                </div>
+                
+            </div>
 
         </div>
 
