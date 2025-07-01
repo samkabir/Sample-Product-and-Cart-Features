@@ -35,8 +35,6 @@ const BreadCrumbs = () => {
                             ))}
                         </ol>
                     </nav>
-                    EsLINTing from gemini
-                        better code structure and code optimization
                 </header>
             </div>
         </div>
